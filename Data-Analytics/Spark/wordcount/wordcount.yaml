@@ -1,0 +1,35 @@
+apiVersion: "sparkoperator.hpe.com/v1beta2"
+kind: SparkApplication
+metadata:
+  name: word-count
+  namespace: <username>
+spec:
+  type: Python
+  sparkVersion: 3.5.1
+  mode: cluster
+  image: gcr.io/mapr-252711/spark-3.5.1:v3.5.1.0.5
+  imagePullPolicy: Always
+  mainApplicationFile: "local:///mounts/shared-volume/shared/ezua-tutorials/current-release/Data-Analytics/Spark/wordcount/wordcount.py"
+  arguments:
+  - file:///mounts/shared-volume/shared/ezua-tutorials/current-release/Data-Analytics/Spark/wordcount/wordcount.txt
+  restartPolicy:
+    type: Never
+  imagePullSecrets:
+    - imagepull
+  driver:
+    labels:
+      version: 3.5.1
+    cores: 1
+    coreLimit: "1"
+    memory: 512m    
+  executor:
+    labels:
+      version: 3.5.1
+    cores: 1
+    coreLimit: "1"
+    memory: 512m
+    instances: 1
+  volumes:
+    - name: shared-volume
+      persistentVolumeClaim:
+        claimName: kubeflow-shared-pvc

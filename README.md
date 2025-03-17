@@ -1,2 +1,2 @@
-# Tutorials for AI Essentials Software on PCAI
-AIE Engineering managed demo tutorials for AI Essentials on PCAI
+# ezua-tutorials
+Ezmeral Unified Analytics Software - Tutorials and demos
