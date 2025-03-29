@@ -14,15 +14,15 @@ spec:
     spark.task.resource.gpu.amount: "1"
     spark.executor.resource.gpu.amount: "1"
     spark.executor.resource.gpu.vendor: "nvidia.com"
-    spark.executor.resource.gpu.discoveryScript: "/opt/mapr/spark/spark-3.5.1/examples/src/main/scripts/getGpusResources.sh"
-    spark.rapids.shims-provider-override: "com.nvidia.spark.rapids.shims.spark351.SparkShimServiceProvider"
+    spark.executor.resource.gpu.discoveryScript: "/opt/mapr/spark/spark-3.5.2/examples/src/main/scripts/getGpusResources.sh"
+    spark.rapids.shims-provider-override: "com.nvidia.spark.rapids.shims.spark352.SparkShimServiceProvider"
 
   type: Scala
-  sparkVersion: 3.5.1
+  sparkVersion: 3.5.2
   mode: cluster
-  image: gcr.io/mapr-252711/spark-3.5.1:v3.5.1.0.5
+  image: lr1-bd-harbor-registry.mip.storage.hpecorp.net/develop/hpe-spark/spark:v3.5.2.2.0
   imagePullPolicy: Always
-  mainApplicationFile: "local:///mounts/shared-volume/shared/ezua-tutorials/current-release/Data-Analytics/Spark-GPU/Scala/SparkExamples.jar"
+  mainApplicationFile: "local:///mounts/shared-volume/shared/aie-tutorials/current-release/Data-Analytics/Spark-GPU/Scala/SparkExamples.jar"
   mainClass: com.hpe.examples.spark.sql.SqlOnGpuExample
   restartPolicy:
     type: Never
@@ -33,7 +33,7 @@ spec:
     coreLimit: "1000m"
     memory: "1024m"
     labels:
-      version: 3.5.1
+      version: 3.5.2
     volumeMounts:
       - name: shared-volume
         mountPath: /mounts/shared-volume
@@ -46,7 +46,7 @@ spec:
       name: "nvidia.com/gpu"
       quantity: 1
     labels:
-      version: 3.5.1
+      version: 3.5.2
     volumeMounts:
       - name: shared-volume
         mountPath: /mounts/shared-volume
