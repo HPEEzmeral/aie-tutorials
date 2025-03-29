@@ -6,12 +6,12 @@ spec:
   type: Scala
   sparkVersion: 3.5.1
   mode: cluster
-  image: '{{dag_run.conf["airgap_registry_url"]|default("lr1-bd-harbor-registry.mip.storage.hpecorp.net/develop/", True)}}hpe-spark/spark-3.5.2:v3.5.2.1.1'
+  image: '{{dag_run.conf["airgap_registry_url"]|default("lr1-bd-harbor-registry.mip.storage.hpecorp.net/develop/", True)}}hpe-spark/spark:v3.5.2.2.0'
   imagePullPolicy: Always
   imagePullSecrets:
   - imagepull
   mainClass: org.apache.spark.examples.SparkPi
-  mainApplicationFile: "local:///mounts/shared-volume/shared/ezua-tutorials/current-release/Data-Analytics/Spark/pi/pi.py"
+  mainApplicationFile: "local:///mounts/shared-volume/shared/aie-tutorials/current-release/Data-Analytics/Spark/pi/pi.py"
   restartPolicy:
     type: Never
   driver:
