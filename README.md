@@ -18,11 +18,12 @@ Branch Name: For each HPE AI Essentials Software release, a separate branch (aie
 
 **Model-Monitoring/**: Source code and examples for whylogs. 
 
-Important: Do not clone the repository or open individual files without first reviewing the documentation. 
+***Important: Do not clone the repository or open individual files without first reviewing the documentation.***  
 
 # Documentation 
 Access the documentation for tutorials here: [HPE AI Essentials Software documentation](https://hpe.com/support/AIETutorials). 
 
+***Note: Change appropriate version in documentation*** 
+
 # Support
 If you have any questions or run into issues, contact [HPE Support](https://support.hpe.com/). 
-
