@@ -8,7 +8,7 @@ HPE AI Essentials Software provides a series of tutorials related to Spark, Airf
 The tutorials are stored in this repository, but do not directly access them yet. First refer to the documentation and follow the required steps to understand the prerequisites and any configuration information required for the tutorials.
 
 # Repository Structure 
-Branch Name: For each HPE AI Essentials Software release, a separate branch (aie-<version-number>) is created in the aie-tutorials repository corresponding to the release version. To access tutorials specific to a release, navigate to the respective branch for that release version. For example, to access tutorials for HPE AI Essentials Software 1.7.0, navigate to the aie-1.7.0 branch.
+Branch Name: For each HPE AI Essentials Software release, a separate branch (aie-{release-version}) is created in the aie-tutorials repository corresponding to the release version. To access tutorials specific to a release, navigate to the respective branch for that release version. For example, to access tutorials for HPE AI Essentials Software 1.7.0, navigate to the aie-1.7.0 branch.
 
 **Data-Analytics/**: Source code and examples related to data analytics tutorials using Spark. 
 
