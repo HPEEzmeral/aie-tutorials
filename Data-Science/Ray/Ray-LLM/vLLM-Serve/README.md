@@ -65,3 +65,10 @@ ERROR: Could not install packages due to an OSError: [Errno 122] Disk quota exce
 ```
 error: can't find Rust compiler
 ```
+* **Configuration Property Error:** If the deployment fails due to an invalid configuration property, you might see an error like this:
+```
+RuntimeError: Request failed with status code 400: 
+ValidationError(model='ServeDeploySchema', errors=[{'loc': ('logging_config', 'additional_log_standard_attrs'), 'msg': 'extra fields not permitted', 'type': 'value_error.extra'}]). 
+```
+This indicates that the configuration includes an unsupported property. To resolve the issue, remove the problematic property from the configuration file.
+For instance, to fix the error above, remove the `additional_log_standard_attrs` field from the `logging_config` section of `ray_vllm_deployment_config.yaml`.
