@@ -1,3 +1,4 @@
+import os
 from airflow import DAG
 from airflow.models.param import Param
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import (
