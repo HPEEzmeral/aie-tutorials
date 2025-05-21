@@ -1,3 +1,4 @@
+import os
 from airflow import DAG
 from airflow.models.param import Param
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import (
@@ -46,11 +47,11 @@ dag = DAG(
             type="string",
             description="S3 key to pull csv data from",
         ),
-        "airgap_registry_url": Param(
-            "",
-            type=["null", "string"],
-            pattern=r"^$|^\S+/$",
-            description="Airgap registry url. Trailing slash in the end is required",
+        "registry_url": Param(
+            os.environ.get("AIRGAP_REGISTRY"),
+            type=["string"],
+            pattern=r"^\S+/$",
+            description="Input your registry url. Trailing slash in the end is required",
         ),
     },
     render_template_as_native_obj=True,
