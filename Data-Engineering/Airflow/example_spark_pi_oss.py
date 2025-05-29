@@ -27,7 +27,7 @@ dag = DAG(
     tags=["ezaf", "spark", "pi"],
     params={
         "spark_image_url": Param(
-           f"{os.environ.get('AIRGAP_REGISTRY')}/hpe-spark/apache-spark:v3.5.5",
+           f"{os.environ.get('AIRGAP_REGISTRY')}hpe-spark/apache-spark:v3.5.5",
             type=["string"],
             description="Provide Python-Spark image url",
         ),
