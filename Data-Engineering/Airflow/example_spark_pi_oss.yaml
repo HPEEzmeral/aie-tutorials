@@ -6,7 +6,7 @@ spec:
   type: Python
   sparkVersion: '{{dag_run.conf["spark_image_version"]}}'
   mode: cluster
-  image: '{{dag_run.conf["spark_image_url"]|default("", True)}}'
+  image: '{{dag_run.conf["registry_url"]}}hpe-spark/apache-spark:v3.5.5'
   imagePullPolicy: Always
   imagePullSecrets:
   - imagepull
