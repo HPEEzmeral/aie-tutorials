@@ -1,3 +1,4 @@
+import os
 from airflow import DAG
 from airflow.models.param import Param
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import (
@@ -26,12 +27,12 @@ dag = DAG(
     tags=["ezaf", "spark", "pi"],
     params={
         "spark_image_url": Param(
-            "gcr.io/mapr-252711/apache-spark:3.5.2",
-            type=["null", "string"],
+           f"{os.environ.get('AIRGAP_REGISTRY')}hpe-spark/apache-spark:v3.5.5",
+            type=["string"],
             description="Provide Python-Spark image url",
         ),
         "spark_image_version": Param(
-            "3.5.2",
+            "3.5.5",
             type=["null", "string"],
             description="Provide Spark image Version",
         )

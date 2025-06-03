@@ -6,7 +6,7 @@ spec:
   type: Scala
   sparkVersion: 3.5.1
   mode: cluster
-  image: '{{dag_run.conf["registry_url"]}}hpe-spark/spark:v3.5.2.3.0'
+  image: '{{dag_run.conf["registry_url"]}}hpe-spark/spark:v3.5.5.2.0'
   imagePullPolicy: Always
   imagePullSecrets:
   - imagepull
