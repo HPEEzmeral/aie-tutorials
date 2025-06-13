@@ -10,7 +10,7 @@ outputs:
 - {name: Best Parameter Set,         type: JsonObject,                       description: 'The hyperparameter set of the best Experiment Trial'}
 implementation:
   container:
-    image: docker.io/kubeflowkatib/kubeflow-pipelines-launcher
+    image: docker.io/kubeflowkatib/kubeflow-pipelines-launcher:ezua-1.7
     command: [python, src/launch_experiment.py]
     args: [
       --experiment-name,            {inputValue: Experiment Name},

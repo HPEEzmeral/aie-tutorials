@@ -17,7 +17,7 @@ inputs:
 - {name: Delete Finished Tfjob,       type: Bool,       default: 'True' ,   description: 'Whether to delete the tfjob after it is finished.'}
 implementation:
   container:
-    image: nikenano/launchernew:latest
+    image: nikenano/launchernew::ezua-1.7
     command: [python, /ml/launch_tfjob.py]
     args: [
       --name,                     {inputValue: Name},
