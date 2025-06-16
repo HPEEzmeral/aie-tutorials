@@ -1,8 +1,8 @@
 # Readme for GitHub Tutorials in HPE AI Essentials Software
-Welcome to the HPE AI Essentials Software aie-tutorials repository! This repository contains a set of tutorials that help you to experience HPE AI Essentials Software and the available tools and frameworks. Find tutorials for data science, data engineering, and data analytics workflows with notebooks and tools such as Spark, MLflow, Feast, Airflow, and Ray. Before accessing them, follow the instructions in the documentation to ensure proper configuration and setup.
+Welcome to the HPE AI Essentials Software aie-tutorials repository! This repository contains a set of tutorials that help you to experience HPE AI Essentials Software and the available tools and frameworks. Find tutorials for data science, data engineering, and data analytics workflows with notebooks and tools such as Spark, MLflow, Airflow, and Ray. Before accessing them, follow the instructions in the documentation to ensure proper configuration and setup.
 
 # Introduction
-HPE AI Essentials Software provides a series of tutorials related to Spark, Airflow, Ray, MLflow, and Feast. To ensure that you have a smooth experience, Hewlett Packard Enterprise recommends that you review the documentation before directly accessing the tutorials on GitHub. See the [HPE AI Essentials Software documentation](https://hpe.com/support/AIETutorials).
+HPE AI Essentials Software provides a series of tutorials related to Spark, Airflow, Ray, MLflow. To ensure that you have a smooth experience, Hewlett Packard Enterprise recommends that you review the documentation before directly accessing the tutorials on GitHub. See the [HPE AI Essentials Software documentation](https://hpe.com/support/AIETutorials).
 
 # Getting Started
 The tutorials are stored in this repository, but do not directly access them yet. First refer to the documentation and follow the required steps to understand the prerequisites and any configuration information required for the tutorials.
@@ -14,9 +14,7 @@ Branch Name: For each HPE AI Essentials Software release, a separate branch (aie
 
 **Data-Engineering/**: Source code and examples related to data engineering tutorials using Airflow and Spark. 
 
-**Data Science/**: Source code and examples related to data science tutorials using Feast, Kubeflow, MLflow, and Ray. 
-
-**Model-Monitoring/**: Source code and examples for whylogs. 
+**Data Science/**: Source code and examples related to data science tutorials using Kubeflow, MLflow, and Ray. 
 
 ***Important: Do not clone the repository or open individual files without first reviewing the documentation.***  
 
