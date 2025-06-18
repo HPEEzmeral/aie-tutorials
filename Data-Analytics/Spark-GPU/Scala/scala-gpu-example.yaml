@@ -14,8 +14,8 @@ spec:
     spark.task.resource.gpu.amount: "1"
     spark.executor.resource.gpu.amount: "1"
     spark.executor.resource.gpu.vendor: "nvidia.com"
-    spark.executor.resource.gpu.discoveryScript: "/opt/mapr/spark/spark-3.5.2/examples/src/main/scripts/getGpusResources.sh"
-    spark.rapids.shims-provider-override: "com.nvidia.spark.rapids.shims.spark352.SparkShimServiceProvider"
+    spark.executor.resource.gpu.discoveryScript: "/opt/mapr/spark/spark-3.5.5/examples/src/main/scripts/getGpusResources.sh"
+    spark.rapids.shims-provider-override: "com.nvidia.spark.rapids.shims.spark355.SparkShimServiceProvider"
 
   type: Scala
   sparkVersion: 3.5.5
