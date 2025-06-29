@@ -7,12 +7,12 @@ from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import (
 from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import (
     SparkKubernetesSensor,
 )
-from airflow.utils.dates import days_ago
+from datetime import datetime
 
 default_args = {
     "owner": "airflow",
     "depends_on_past": False,
-    "start_date": days_ago(1),
+    "start_date": datetime(2022, 1, 1),
     "email": ["airflow@example.com"],
     "email_on_failure": False,
     "email_on_retry": False,
@@ -23,7 +23,7 @@ default_args = {
 dag = DAG(
     "spark_read_csv_write_parquet_fts",
     default_args=default_args,
-    schedule_interval=None,
+    schedule=None,
     tags=["e2e example", "ezaf", "spark", "csv", "parquet", "fts"],
     params={
         "export_path": Param(
