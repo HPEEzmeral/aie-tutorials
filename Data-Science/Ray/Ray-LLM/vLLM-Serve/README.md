@@ -18,8 +18,8 @@ Please note that there is a Serve deployment config file example under resource 
     export https_proxy=<>
     && export http_proxy=<>
 
-    pip install vllm
-    # This will install the latest stable version of vLLM.However,any version of vLLM can be installed,we recommend installing version >=0.5.1
+    pip install vllm==0.6.3
+    # Note: You can install a specific version of vLLM. However, ensure that the vLLM version you choose is compatible and does require upgrading or downgrading the already installed Ray 2.44.1 package.
     ```
 * To ensure optimal performance, use dedicated directories containing only the essential files needed for that job submission as a working directory.
 * Activate the Ray-specific Python kernel in your notebook environment.
