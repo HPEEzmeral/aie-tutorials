@@ -1,6 +1,8 @@
-###### This example shows how to configure a spark application to allocate and utilize GPU in sql computations for Pyspark
-1. Put the py file to available location, e.g., maprfs
-2. Run the python-gpu example
+###### This example shows how to configure a spark application to allocate and utilize GPU in sql computations for Pyspark 
+
+1. Allocate a single GPU for the required project in resource management to run the example.
+2. Put the py file to available location, e.g., maprfs
+3. Run the python-gpu example
 
 To test the same on livy, use the following code:
 ```python

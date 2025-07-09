@@ -2,12 +2,13 @@
 
 ## Running Kubeflow Notebooks on GPU
 
+Allocate a single GPU for the required project in resource management to run the example.
 In order to create Kubfeflow notebook with GPU, choose corresponding image with CUDA support. During notebook server
 creation, click on "Custom Notebook" button within selected "Jupyter" section, and choose one of the following images
 in drop-down from the notebook images list:
 
-* `gcr.io/mapr-252711/kubeflow/notebooks/jupyter-tensorflow-cuda-full:<TAG>` (Tensorflow CUDA image)
-* `gcr.io/mapr-252711/kubeflow/notebooks/jupyter-pytorch-cuda-full:<TAG>` (PyTorch CUDA image)
+* `lr1-bd-harbor-registry.mip.storage.hpecorp.net/develop/hpe-kubeflow/notebooks/jupyter-tensorflow-cuda-full:<TAG>` (Tensorflow CUDA image)
+* `lr1-bd-harbor-registry.mip.storage.hpecorp.net/develop/hpe-kubeflow/notebooks/jupyter-pytorch-cuda-full:<TAG>` (PyTorch CUDA image)
 
 Note: `TAG` will vary based on the UA releases.
 
