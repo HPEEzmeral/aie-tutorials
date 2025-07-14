@@ -1,8 +1,9 @@
-###### This example shows how to configure a spark application to allocate and utilize GPU in sql computations for Scala 
-Examples for Ezmeral Spark on Kubernetes v3.4.1
+###### This example shows how to configure a spark application to allocate and utilize GPU in sql computations for Scala
 
-1. Put the jar file to available location, e.g., maprfs
-2. Run the scala-gpu example, check physical plan in the output logs
+1. Allocate a single GPU for the required project in resource management to run the example.
+2. Put the jar file to available location, e.g., maprfs
+3. Run the scala-gpu example, check physical plan in the output logs
+
 
 ```shell
 == Physical Plan ==
