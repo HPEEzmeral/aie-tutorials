@@ -19,7 +19,7 @@ class PipInstallTemplatedPythonVirtualenvOperator(PythonVirtualenvOperator):
 
 with DAG(
     dag_id="example_python_virtualenv_operator",
-    schedule_interval=None,
+    schedule=None,
     start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
     catchup=False,
     tags=["example", "python", "virtualenv", "aie"],
