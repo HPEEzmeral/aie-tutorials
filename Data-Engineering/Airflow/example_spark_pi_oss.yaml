@@ -8,8 +8,6 @@ spec:
   mode: cluster
   image: '{{dag_run.conf["spark_image_url"]}}'
   imagePullPolicy: Always
-  imagePullSecrets:
-  - imagepull
   mainClass: org.apache.spark.examples.SparkPi
   mainApplicationFile: "local:///mounts/shared-volume/shared/aie-tutorials/current-release/Data-Analytics/Spark/pi/pi.py"
   restartPolicy:

@@ -4,9 +4,6 @@ from airflow.models.param import Param
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import (
     SparkKubernetesOperator,
 )
-from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import (
-    SparkKubernetesSensor,
-)
 from datetime import datetime
 
 default_args = {
@@ -44,17 +41,7 @@ dag = DAG(
 submit = SparkKubernetesOperator(
     task_id="submit",
     application_file="example_spark_pi_oss.yaml",
-    # do_xcom_push=True,
     delete_on_termination=False,
     dag=dag,
     enable_impersonation_from_ldap_user=True,
 )
-
-# sensor = SparkKubernetesSensor(
-#     task_id="monitor",
-#     application_name="{{ task_instance.xcom_pull(task_ids='submit')['metadata']['name'] }}",
-#     dag=dag,
-#     attach_log=True,
-# )
-
-# submit >> sensor
