@@ -1,6 +1,6 @@
 import os
 from airflow import DAG
-from airflow.models.param import Param
+from airflow.models.param import Param, ParamsDict
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import (
     SparkKubernetesOperator,
 )
@@ -22,16 +22,18 @@ dag = DAG(
     default_args=default_args,
     schedule=None,
     tags=["ezaf", "spark", "pi"],
-    params={
-        "registry_url": Param(
-            os.environ.get("AIRGAP_REGISTRY"),
-            type=["string"],
-            pattern=r"^\S+/$",
-            description="Input your registry url. Trailing slash in the end is required",
-        ),
-    },
+    params=ParamsDict(
+        {
+            "registry_url": Param(
+                os.environ.get("AIRGAP_REGISTRY"),
+                type=["string"],
+                pattern=r"^\S+/$",
+                description="Input your registry url. Trailing slash in the end is required",
+            ),
+        }
+    ),
     render_template_as_native_obj=True,
-    access_control={"All": {"can_read", "can_edit", "can_delete"}},
+    access_control={"All": {"DAGs": {"can_read", "can_edit", "can_delete"}}},
 )
 
 submit = SparkKubernetesOperator(
