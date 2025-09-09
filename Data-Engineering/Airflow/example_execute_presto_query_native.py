@@ -29,7 +29,6 @@ dag = DAG(
     default_args=default_args,
     schedule=None,
     tags=["example", "presto", "query", "aie"],
-    access_control={"All": {"DAGs": {"can_read", "can_edit", "can_delete"}}},
     params=ParamsDict(
         {
             "host": Param(
@@ -70,6 +69,8 @@ dag = DAG(
             ),
         }
     ),
+    render_template_as_native_obj=True,
+    access_control={"All": {"DAGs": {"can_read", "can_edit", "can_delete"}}},
 )
 
 
@@ -166,4 +167,4 @@ print_data_table_task = PythonOperator(
     dag=dag,
 )
 
-presto_query_task >> print_data_table_task  # type: ignore
+_ = presto_query_task >> print_data_table_task

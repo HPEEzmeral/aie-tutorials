@@ -24,7 +24,6 @@ dag = DAG(
     default_args=default_args,
     schedule=None,
     tags=["example", "s3", "transfer", "boto", "aie"],
-    access_control={"All": {"DAGs": {"can_read", "can_edit", "can_delete"}}},
     params=ParamsDict(
         {
             "s3_endpoint": Param(
@@ -59,6 +58,7 @@ dag = DAG(
         }
     ),
     render_template_as_native_obj=True,
+    access_control={"All": {"DAGs": {"can_read", "can_edit", "can_delete"}}},
 )
 
 
@@ -86,36 +86,30 @@ def get_s3_client(endpoint_host: str, ssl_enabled: bool):
 
 
 def upload_file_to_s3(s3, local_file_path, bucket_name, s3_file_key):
+    s3_full_path = f"s3://{bucket_name}/{s3_file_key}"
     start_time = time.time()
     try:
         s3.upload_file(local_file_path, bucket_name, s3_file_key)
         end_time = time.time()
-        upload_time = end_time - start_time
-        print(
-            f"File '{local_file_path}' uploaded to 's3://{bucket_name}/{s3_file_key}' in {upload_time:.2f} seconds."
-        )
+        dt = end_time - start_time
+        print(f"File '{local_file_path}' uploaded to '{s3_full_path}' in {dt:.2f} s.")
     except botocore.exceptions.ClientError as e:
         print(f"An error occurred while uploading '{local_file_path}': {str(e)}")
 
 
 def download_file_from_s3(s3, bucket_name, s3_file_key, local_file_path):
+    s3_full_path = f"s3://{bucket_name}/{s3_file_key}"
     start_time = time.time()
     try:
         s3.download_file(bucket_name, s3_file_key, local_file_path)
         end_time = time.time()
-        download_time = end_time - start_time
-        print(
-            f"File 's3://{bucket_name}/{s3_file_key}' downloaded to '{local_file_path}' in {download_time:.2f} seconds."
-        )
+        dt = end_time - start_time
+        print(f"File '{s3_full_path}' downloaded to '{local_file_path}' in {dt:.2f} s.")
     except botocore.exceptions.ClientError as e:
         if e.response["Error"]["Code"] == "404":
-            print(
-                f"The object 's3://{bucket_name}/{s3_file_key}' does not exist in the bucket '{bucket_name}'."
-            )
+            print(f"The object '{s3_full_path}' does not exist.")
         else:
-            print(
-                f"An error occurred while downloading 's3://{bucket_name}/{s3_file_key}': {str(e)}"
-            )
+            print(f"An error occurred while downloading '{s3_full_path}': {str(e)}")
 
 
 def callable_s3_data_transfer(

@@ -35,10 +35,11 @@ with DAG(
                 "pypi.org",
                 type="string",
                 pattern=r"^\S+$",
-                description="Input trusted host for pip install. It should be the hostname (or IP address) of PyPI server",
+                description="Input trusted host for pip install. It should be hostname or IP address of PyPI server",
             ),
         }
     ),
+    render_template_as_native_obj=True,
     access_control={"All": {"DAGs": {"can_read", "can_edit", "can_delete"}}},
 ) as dag:
 
