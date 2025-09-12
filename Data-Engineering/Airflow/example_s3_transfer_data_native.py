@@ -85,6 +85,19 @@ def get_s3_client(endpoint_host: str, ssl_enabled: bool):
     return s3
 
 
+def create_bucket_if_not_exists(s3, bucket_name):
+    try:
+        s3.head_bucket(Bucket=bucket_name)
+        print(f"Bucket '{bucket_name}' already exists.")
+    except botocore.exceptions.ClientError as e:
+        error_code = int(e.response["Error"]["Code"])
+        if error_code == 404:
+            s3.create_bucket(Bucket=bucket_name)
+            print(f"Bucket '{bucket_name}' created.")
+        else:
+            print(f"An error occurred: {str(e)}")
+
+
 def upload_file_to_s3(s3, local_file_path, bucket_name, s3_file_key):
     s3_full_path = f"s3://{bucket_name}/{s3_file_key}"
     start_time = time.time()
@@ -123,6 +136,7 @@ def callable_s3_data_transfer(
     s3 = get_s3_client(s3_endpoint, s3_endpoint_ssl_enabled)
 
     if mode == "upload":
+        create_bucket_if_not_exists(s3, bucket_name)
         upload_file_to_s3(s3, local_file_path, bucket_name, s3_file_key)
     elif mode == "download":
         download_file_from_s3(s3, bucket_name, s3_file_key, local_file_path)
