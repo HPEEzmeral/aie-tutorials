@@ -1,3 +1,4 @@
+import os
 import base64
 import time
 import botocore.exceptions
@@ -111,6 +112,8 @@ def upload_file_to_s3(s3, local_file_path, bucket_name, s3_file_key):
 
 
 def download_file_from_s3(s3, bucket_name, s3_file_key, local_file_path):
+    # Create parent directories if they do not exist
+    os.makedirs(os.path.dirname(local_file_path), exist_ok=True)
     s3_full_path = f"s3://{bucket_name}/{s3_file_key}"
     start_time = time.time()
     try:
@@ -143,7 +146,7 @@ def callable_s3_data_transfer(
 
 
 s3_transfer_task = PythonOperator(
-    task_id="upload_to_s3",
+    task_id="data_transfer",
     python_callable=callable_s3_data_transfer,
     op_args=[
         "{{ params.s3_endpoint }}",
