@@ -1,0 +1,3 @@
+# Ignore OSS DAGs by default. To see them, explicitly specify 'Data-Engineering/Airflow/OSS' as subDir 
+# in Airflow configuration or edit this file to remove the line below.
+OSS/
