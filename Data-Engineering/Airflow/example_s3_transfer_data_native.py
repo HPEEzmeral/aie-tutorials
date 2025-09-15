@@ -24,7 +24,7 @@ dag = DAG(
     "s3_transfer_data_native",
     default_args=default_args,
     schedule=None,
-    tags=["example", "s3", "transfer", "boto", "aie"],
+    tags=["example", "aie", "s3", "transfer", "boto"],
     params=ParamsDict(
         {
             "s3_endpoint": Param(

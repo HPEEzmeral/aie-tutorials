@@ -21,7 +21,7 @@ dag = DAG(
     "spark_pi",
     default_args=default_args,
     schedule=None,
-    tags=["ezaf", "spark", "pi"],
+    tags=["example", "aie", "spark", "pi"],
     params=ParamsDict(
         {
             "registry_url": Param(

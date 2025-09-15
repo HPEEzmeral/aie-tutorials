@@ -22,7 +22,7 @@ with DAG(
     schedule=None,
     start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
     catchup=False,
-    tags=["example", "python", "virtualenv", "aie"],
+    tags=["example", "aie", "python", "virtualenv"],
     params=ParamsDict(
         {
             "index_url": Param(

@@ -21,7 +21,7 @@ dag = DAG(
     "spark_read_csv_write_parquet_fts",
     default_args=default_args,
     schedule=None,
-    tags=["e2e example", "ezaf", "spark", "csv", "parquet", "fts"],
+    tags=["example", "aie", "e2e example", "spark", "csv", "parquet", "fts"],
     params=ParamsDict(
         {
             "export_path": Param(

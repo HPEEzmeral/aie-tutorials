@@ -21,7 +21,7 @@ dag = DAG(
     "spark_read_write_parquet_mnist",
     default_args=default_args,
     schedule=None,
-    tags=["e2e example", "ezaf", "spark", "parquet", "mnist"],
+    tags=["example", "aie", "e2e example", "spark", "parquet", "mnist"],
     params=ParamsDict(
         {
             "export_path": Param(

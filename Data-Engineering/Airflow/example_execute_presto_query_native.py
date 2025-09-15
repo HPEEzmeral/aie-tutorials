@@ -28,7 +28,7 @@ dag = DAG(
     "presto_query_dag_native",
     default_args=default_args,
     schedule=None,
-    tags=["example", "presto", "query", "aie"],
+    tags=["example", "aie", "presto", "query"],
     params=ParamsDict(
         {
             "host": Param(
