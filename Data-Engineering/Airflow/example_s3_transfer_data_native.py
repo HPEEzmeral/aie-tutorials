@@ -1,12 +1,14 @@
+from __future__ import annotations
+
 import os
-import base64
 import time
-import botocore.exceptions
-import boto3
 from datetime import datetime
+
+import boto3
+import botocore.exceptions
+
 from airflow import DAG
 from airflow.models.param import Param, ParamsDict
-from airflow.providers.cncf.kubernetes.hooks.kubernetes import KubernetesHook
 from airflow.providers.standard.operators.python import PythonOperator
 
 default_args = {
@@ -64,13 +66,8 @@ dag = DAG(
 
 
 def get_token():
-    with open("/var/run/secrets/kubernetes.io/serviceaccount/namespace", "r") as f:
-        namespace = f.read()
-    k8sCoreApiClient = KubernetesHook().core_v1_client
-    secret = k8sCoreApiClient.read_namespaced_secret("access-token", namespace)
-    token_encoded = secret.data["AUTH_TOKEN"]  # type: ignore
-    token = base64.b64decode(token_encoded).decode("utf-8")
-    return token
+    with open("/etc/secrets/ezua/.auth_token") as f:
+        return f.read().strip()
 
 
 def get_s3_client(endpoint_host: str, ssl_enabled: bool):

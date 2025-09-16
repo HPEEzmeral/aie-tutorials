@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import pendulum
 
+from airflow import DAG
 from airflow.models.param import Param, ParamsDict
 from airflow.providers.standard.operators.python import PythonVirtualenvOperator
-from airflow import DAG
 
 
 # PipInstallTemplatedPythonVirtualenvOperator is a custom operator that extends the PythonVirtualenvOperator
@@ -35,7 +35,7 @@ with DAG(
                 "pypi.org",
                 type="string",
                 pattern=r"^\S+$",
-                description="Input trusted host for pip install. It should be hostname or IP address of PyPI server",
+                description="Input trusted host for pip. It should be hostname or IP address of PyPI server",
             ),
         }
     ),
@@ -45,6 +45,7 @@ with DAG(
 
     def callable_virtualenv():
         from time import sleep
+
         import emoji
 
         print(emoji.emojize("Python is :thumbs_up:"))

@@ -1,14 +1,15 @@
 from __future__ import annotations
 
-import pendulum
-import random
 import os
+import random
+
+import pendulum
+from kubernetes.client import models as k8s
 
 from airflow.models.param import Param, ParamsDict
-from kubernetes.client import models as k8s
-from airflow.sdk import dag, task
-from airflow.providers.standard.sensors.time import TimeSensor
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
+from airflow.providers.standard.sensors.time import TimeSensor
+from airflow.sdk import dag, task
 
 
 @dag(
@@ -91,7 +92,7 @@ def example_kubernetes_executor():
         """
         return ["sh", "-c", command]
 
-    time_sensor >> kubernetes_task >> kubernetes_task_from_sdk()
+    time_sensor >> kubernetes_task >> kubernetes_task_from_sdk()  # type: ignore
 
 
 def get_volumes():

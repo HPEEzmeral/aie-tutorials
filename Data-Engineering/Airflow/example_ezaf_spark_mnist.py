@@ -1,10 +1,13 @@
+from __future__ import annotations
+
 import os
+from datetime import datetime
+
 from airflow import DAG
 from airflow.models.param import Param, ParamsDict
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import (
     SparkKubernetesOperator,
 )
-from datetime import datetime
 
 default_args = {
     "owner": "airflow",

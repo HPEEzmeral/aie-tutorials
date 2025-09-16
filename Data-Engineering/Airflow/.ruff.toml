@@ -1,0 +1,35 @@
+target-version = "py39"
+line-length = 110
+
+[lint]
+extend-select = [
+  "I",
+  "UP",
+  "ASYNC",
+  "ISC",
+  "TC",
+  "G",
+  "LOG",
+  "PT",
+  "E",
+  "W",
+]
+ignore = [
+  "D100", # Unwanted; Docstring at the top of every file
+  "D102", # Unwanted; Missing docstring in public method
+  "D103", # Unwanted; Missing docstring in public function
+  "RET505", # Unwanted; Do not check for else statements with a return statement
+]
+
+[lint.isort]
+required-imports = ["from __future__ import annotations"]
+combine-as-imports = true
+section-order = [
+  "future",
+  "standard-library",
+  "third-party",
+  "first-party",
+  "local-folder",
+  "testing"
+]
+known-first-party = ["airflow"]

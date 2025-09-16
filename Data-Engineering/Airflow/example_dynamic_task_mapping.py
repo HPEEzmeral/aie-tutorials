@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from airflow.sdk import DAG, task, get_current_context
 from airflow.models.param import Param, ParamsDict
 from airflow.providers.standard.operators.trigger_dagrun import TriggerDagRunOperator
+from airflow.sdk import DAG, get_current_context, task
 
 with DAG(
     dag_id="example_task_mapping_scheduled",

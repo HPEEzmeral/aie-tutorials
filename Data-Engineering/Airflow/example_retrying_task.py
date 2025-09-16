@@ -3,8 +3,8 @@ from __future__ import annotations
 import random
 from datetime import datetime, timedelta
 
-from airflow.sdk import dag, task, get_current_context
 from airflow.models.param import Param, ParamsDict
+from airflow.sdk import dag, get_current_context, task
 
 
 @dag(
