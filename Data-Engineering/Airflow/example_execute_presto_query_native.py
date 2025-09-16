@@ -59,13 +59,8 @@ dag = DAG(
                 type="string",
                 description="Presto schema",
             ),
-            "user": Param(
-                "",
-                type=["null", "string"],
-                description="Presto user. Leave empty to utilize username of current user",
-            ),
             "query": Param(
-                "SELECT * FROM customdemocatalog01.public.customer LIMIT 10",
+                "SELECT * FROM customer LIMIT 10",
                 type="string",
                 description="Presto query to execute",
             ),
@@ -92,7 +87,7 @@ def callable_execute_presto_query():
     protocol = params["protocol"]
     catalog = params["catalog"]
     schema = params["schema"]
-    user = params["user"] or username_from_token
+    user = username_from_token
     query = params["query"]
 
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
