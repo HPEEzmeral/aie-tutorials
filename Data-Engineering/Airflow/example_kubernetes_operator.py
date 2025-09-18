@@ -4,7 +4,6 @@ import os
 import random
 
 import pendulum
-from kubernetes.client import models as k8s
 
 from airflow.models.param import Param, ParamsDict
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
@@ -69,8 +68,6 @@ def example_kubernetes_executor():
         do_xcom_push=True,
         get_logs=True,
         on_finish_action="keep_pod",
-        volumes=get_volumes(),
-        volume_mounts=get_volume_mounts(),
     )
 
     @task.kubernetes_cmd(
@@ -82,8 +79,6 @@ def example_kubernetes_executor():
         do_xcom_push=True,
         get_logs=True,
         on_finish_action="keep_pod",
-        volumes=get_volumes(),
-        volume_mounts=get_volume_mounts(),
     )
     def kubernetes_task_from_sdk():
         command = """
@@ -93,36 +88,6 @@ def example_kubernetes_executor():
         return ["sh", "-c", command]
 
     time_sensor >> kubernetes_task >> kubernetes_task_from_sdk()  # type: ignore
-
-
-def get_volumes():
-    return [
-        k8s.V1Volume(
-            name="platform-shared-data",
-            persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(
-                claim_name="kubeflow-shared-pvc",
-            ),
-        ),
-        k8s.V1Volume(
-            name="user-personal-data",
-            persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(
-                claim_name="user-pvc",
-            ),
-        ),
-    ]
-
-
-def get_volume_mounts():
-    return [
-        k8s.V1VolumeMount(
-            name="platform-shared-data",
-            mount_path="/mnt/shared",
-        ),
-        k8s.V1VolumeMount(
-            name="user-personal-data",
-            mount_path="/mnt/user",
-        ),
-    ]
 
 
 example_kubernetes_executor()
