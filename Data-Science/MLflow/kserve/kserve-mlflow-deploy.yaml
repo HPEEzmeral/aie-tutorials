@@ -8,4 +8,4 @@ spec:
     serviceAccountName: kserve-local-s3
     sklearn:
       protocolVersion: "v2"
-      storageUri: "s3://mlflow/exp-id/run-id/artifacts/model"
+      storageUri: "s3://mlflow.{s3-bucket}/exp-id/models/model-id/artifacts"
