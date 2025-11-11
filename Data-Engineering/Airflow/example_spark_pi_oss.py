@@ -28,12 +28,12 @@ dag = DAG(
     params=ParamsDict(
         {
             "spark_image_url": Param(
-                f"{os.environ.get('AIRGAP_REGISTRY')}hpe-spark/apache-spark:v3.5.5.4",
+                f"{os.environ.get('AIRGAP_REGISTRY')}hpe-spark/apache-spark:v3.5.5.5",
                 type=["string"],
                 description="Provide Python-Spark image url",
             ),
             "spark_image_version": Param(
-                "3.5.5.4",
+                "3.5.5.5",
                 type=["null", "string"],
                 description="Provide Spark image Version",
             ),
