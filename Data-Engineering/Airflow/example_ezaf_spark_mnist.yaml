@@ -15,7 +15,7 @@ spec:
   type: Scala
   sparkVersion: 3.5.5
   mode: cluster
-  image: '{{dag_run.conf["registry_url"]}}hpe-spark/spark:v3.5.5.2.3'
+  image: '{{dag_run.conf["registry_url"]}}hpe-spark/spark:v3.5.5.2.6'
   imagePullPolicy: Always
   mainApplicationFile: local:///mounts/shared-volume/shared/aie-tutorials/current-release/Data-Analytics/Spark/DataTransfer/DataTransfer.jar
   mainClass: com.mapr.sparkdemo.DataTransfer
