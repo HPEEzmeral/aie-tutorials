@@ -25,7 +25,7 @@ rental demand.
 To complete the tutorial follow the steps below:
 
 * Login to your AIE cluster.
-* Create a new notebook server using the jupyter-data-science image.
+* Connect to notebook server instance. For this example select default-notebook.
 * Clone the repository locally.
 * Launch the `bike-sharing-mlflow.ipynb` notebook file and follow the
   instructions.
