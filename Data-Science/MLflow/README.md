@@ -24,16 +24,12 @@ rental demand.
 
 To complete the tutorial follow the steps below:
 
-* Login to you EzAF cluster.
-* Create a new notebook server using the jupyter-data-science image.
+* Login to your AIE cluster.
+* Connect to notebook server instance. For this example select default-notebook.
 * Clone the repository locally.
-* Create a new conda environment using the specified `environment.yaml` file:
-  ```
-  conda env create -f environment.yaml
-  ```
 * Launch the `bike-sharing-mlflow.ipynb` notebook file and follow the
   instructions.
 * After the successful completion of the previous step, launch the
   `bike-sharing-prediction.ipynb` file to invoke the model you deployed.
 
-> It is recommended to create a Notebook server with at least 8Gi of memory
+> It is recommended to create a Notebook server with at least 3CPUs and 4Gi of memory
