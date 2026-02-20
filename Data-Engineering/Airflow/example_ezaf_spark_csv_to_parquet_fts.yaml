@@ -22,7 +22,7 @@ spec:
   arguments:
     - s3a://{{dag_run.conf["s3_bucket"]}}/{{dag_run.conf["s3_path"]}}
     - csv
-    - file:///mnt/user/{{dag_run.conf["export_path"]}}/{{dag_run.id}}
+    - file:///mnt/user/{{dag_run.conf["export_path"]}}
     - parquet
   restartPolicy:
     type: Never
