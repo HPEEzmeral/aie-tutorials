@@ -20,7 +20,7 @@ spec:
   type: Scala
   sparkVersion: 3.5.5
   mode: cluster
-  image: lr1-bd-harbor-registry.mip.storage.hpecorp.net/develop/hpe-spark/spark:v3.5.5.2.6
+  image: lr1-bd-harbor-registry.mip.storage.hpecorp.net/develop/hpe-spark/spark:3.5.5-202604092339-94fab27
   imagePullPolicy: Always
   mainApplicationFile: "local:///mounts/shared-volume/shared/aie-tutorials/current-release/Data-Analytics/Spark-GPU/Scala/SparkExamples.jar"
   mainClass: com.hpe.examples.spark.sql.SqlOnGpuExample
