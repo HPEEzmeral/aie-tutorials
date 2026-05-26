@@ -56,6 +56,12 @@ dag = DAG(
                 pattern=r"^\S+/$",
                 description="Input your registry url. Trailing slash in the end is required",
             ),
+             "mainApplicationFile_path": Param(
+                 "local:///mounts/shared-volume/shared/aie-tutorials/Data-Analytics/Spark/DataTransfer/DataTransfer.jar",
+                type=["string"],
+                description="Input your mainApplicationFile path. It should be in the form of local:///mounts/shared-volume/shared/path/to/your/file",
+                minLength=1,
+            )
         }
     ),
     render_template_as_native_obj=True,
