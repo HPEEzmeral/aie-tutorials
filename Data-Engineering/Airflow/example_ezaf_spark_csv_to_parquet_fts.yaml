@@ -17,7 +17,7 @@ spec:
   mode: cluster
   image: '{{dag_run.conf["registry_url"]}}hpe-spark/spark:3.5.5-202604092339-94fab27'
   imagePullPolicy: Always
-  mainApplicationFile: '{{ dag_run.conf.get("mainApplicationFile_path"}}'
+  mainApplicationFile: '{{ dag_run.conf.get("mainApplicationFile_path")}}'
   mainClass: com.mapr.sparkdemo.DataProcessTransfer
   arguments:
     - s3a://{{dag_run.conf["s3_bucket"]}}/{{dag_run.conf["s3_path"]}}
