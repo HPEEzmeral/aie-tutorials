@@ -35,7 +35,7 @@ from airflow.sdk import dag, task
                 description="Text to echo inside the container",
             ),
             "file_path_to_read": Param(
-                "/mnt/shared/aie-tutorials/current-release/Data-Engineering/Airflow/README.md",
+                "/mnt/shared/aie-tutorials/Data-Engineering/Airflow/README.md",
                 type="string",
                 description="File path to read inside the container",
             ),

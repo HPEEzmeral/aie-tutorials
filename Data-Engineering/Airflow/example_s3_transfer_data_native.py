@@ -48,7 +48,7 @@ dag = DAG(
                 description="S3 key to download or upload data from/to",
             ),
             "local_file_path": Param(
-                "/mnt/shared/aie-tutorials/current-release/Data-Science/Kubeflow/Financial-Time-Series/dataset/financial.csv",
+                "/mnt/shared/aie-tutorials/Data-Science/Kubeflow/Financial-Time-Series/dataset/financial.csv",
                 type="string",
                 description="Local path to upload to S3 or download from S3",
             ),
