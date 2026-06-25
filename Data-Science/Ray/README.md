@@ -169,11 +169,11 @@ After cluster configuration is complete:
 1. Open `xgboost_executor.ipynb` and submit the training job.
 2. Open the KubeRay dashboard to monitor job progress.
 
-![KubeRay dashboard](resources/image4.png)
+![KubeRay dashboard](resources/image3.png)
 
 3. After the training job succeeds and artifacts are stored, update `xgboost_model_config.yaml`; replace `working_dir: "zip_URI"` with your GCS package URI.
 
-![Model config example](resources/image5.png)
+![Model config example](resources/image4.png)
 
 ```yaml
 applications:
@@ -187,5 +187,5 @@ applications:
 4. Deploy the trained model to the remote Ray cluster using serve deploy.
 5. After the model is running, execute sample prediction requests.
 
-![Prediction request example](resources/image6.png)
+![Prediction request example](resources/image5.png)
 
