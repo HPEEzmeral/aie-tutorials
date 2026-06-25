@@ -1,6 +1,5 @@
 import os
 import sys
-import pathlib
 import pandas as pd
 import pickle
 import time
@@ -10,7 +9,6 @@ from ray.data import Dataset
 from ray.data.preprocessors import StandardScaler
 from ray.train.xgboost import RayTrainReportCallback, XGBoostTrainer
 from ray.train import CheckpointConfig, Result, RunConfig, ScalingConfig
-# from dist_xgboost.constants import storage_path, preprocessor_path
 
 sys.path.append(os.path.abspath(".."))
 
@@ -18,16 +16,22 @@ sys.path.append(os.path.abspath(".."))
 ray.data.DataContext.get_current().enable_progress_bars = True
 ray.data.DataContext.get_current().print_on_execution_start = True
 
+
 def prepare_data() -> tuple[Dataset, Dataset, Dataset]:
     """Load and split the dataset into train, validation, and test sets."""
     dataset = ray.data.read_csv("breast_cancer.csv")
     seed = 42
 
     # Split 70% for training.
-    train_dataset, rest = dataset.train_test_split(test_size=0.3, shuffle=True, seed=seed)
+    train_dataset, rest = dataset.train_test_split(
+        test_size=0.3, shuffle=True, seed=seed
+    )
     # Split the remaining 30% into 15% validation and 15% testing.
-    valid_dataset, test_dataset = rest.train_test_split(test_size=0.5, shuffle=True, seed=seed)
+    valid_dataset, test_dataset = rest.train_test_split(
+        test_size=0.5, shuffle=True, seed=seed
+    )
     return train_dataset, valid_dataset, test_dataset
+
 
 start = time.perf_counter()
 # Load and split the dataset.
@@ -41,9 +45,7 @@ if os.path.exists("/tmp/ray/storage/"):
     print(f"Using tmp ray storage path: {storage_path}")
 else:
     storage_path = "/tmp/ray/storage"
-    print(
-        f"/tmp/ray/storage/ not available, creating dir: {storage_path}"
-    )
+    print(f"/tmp/ray/storage/ not available, creating dir: {storage_path}")
     os.makedirs(storage_path, exist_ok=True)
 
 preprocessor_fname = "preprocessor.pkl"
@@ -62,6 +64,7 @@ def train_preprocessor(train_dataset: ray.data.Dataset) -> StandardScaler:
     preprocessor.fit(train_dataset)
 
     return preprocessor
+
 
 preprocessor = train_preprocessor(train_dataset)
 
@@ -84,8 +87,9 @@ run_config = RunConfig(
     storage_path=storage_path,
 )
 
-NUM_WORKERS = 2
+NUM_WORKERS = 1
 USE_GPU = True
+
 
 def train_fn_per_worker(config: dict):
     """Training function that runs on each worker.
@@ -127,9 +131,11 @@ def train_fn_per_worker(config: dict):
         callbacks=[RayTrainReportCallback()],
     )
 
+
 # Parameters for the XGBoost model.
 model_config = {
     "xgboost_params": {
+        "tree_method": "auto",
         "objective": "binary:logistic",
         "eval_metric": ["logloss", "error"],
     }
@@ -150,9 +156,9 @@ trainer = XGBoostTrainer(
     run_config=run_config,
 )
 
+print("Starting training...")
 result: Result = trainer.fit()
-result
+print("Training complete.\nResult:", result)
 
 metrics = result.metrics
-metrics
-
+print("Metrics:", metrics)

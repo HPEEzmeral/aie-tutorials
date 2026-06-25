@@ -1,17 +1,12 @@
-import pathlib
+import os
+import glob
 import pickle
-import time
-import os 
-import sys
-import pandas as pd
 import xgboost
+import pandas as pd
 from ray import serve
 from ray.train.xgboost import RayTrainReportCallback
-from ray.serve.handle import DeploymentHandle
 from ray.train import Checkpoint
 from starlette.requests import Request
-import glob
-import time
 
 storage_path = "/tmp/ray/storage/"
 preprocessor_fname = "preprocessor.pkl"
@@ -19,21 +14,30 @@ preprocessor_path = os.path.join(storage_path, preprocessor_fname)
 model_fname = "model.ubj"  # name used by XGBoost
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
 def get_checkpoint():
     # Find all ray_train_run directories, sorted by name (which includes timestamp)
-    run_dirs = sorted(glob.glob(os.path.join(storage_path, "ray_train_run-*")), reverse=True)
+    run_dirs = sorted(
+        glob.glob(os.path.join(storage_path, "ray_train_run-*")), reverse=True
+    )
     if not run_dirs:
-        raise FileNotFoundError(f"No ray_train_run directories found in {storage_base}")
-    
+        raise FileNotFoundError(f"No ray_train_run directories found in {storage_path}")
+
     for run_dir in run_dirs:
         checkpoint_dirs = sorted(
-            [p for p in glob.glob(os.path.join(run_dir, "checkpoint_*")) if os.path.isdir(p)],
-            reverse=True
+            [
+                p
+                for p in glob.glob(os.path.join(run_dir, "checkpoint_*"))
+                if os.path.isdir(p)
+            ],
+            reverse=True,
         )
         if checkpoint_dirs:
             return checkpoint_dirs[0]  # Most recent checkpoint in this run
-    
-    raise FileNotFoundError(f"No checkpoints found in any ray_train_run directory under {storage_base}")
+
+    raise FileNotFoundError(
+        f"No checkpoints found in any ray_train_run directory under {storage_path}"
+    )
 
 
 def load_model_and_preprocessor():
@@ -44,7 +48,10 @@ def load_model_and_preprocessor():
     model = RayTrainReportCallback.get_model(checkpoint)
     return preprocessor, model
 
-@serve.deployment(num_replicas=2, max_ongoing_requests=25, ray_actor_options={"num_cpus": 2})
+
+@serve.deployment(
+    num_replicas=2, max_ongoing_requests=25, ray_actor_options={"num_cpus": 2}
+)
 class XGBoostModel:
     def __init__(self):
         self.preprocessor, self.model = load_model_and_preprocessor()
@@ -66,6 +73,7 @@ class XGBoostModel:
         # Parse the request body as JSON.
         input_data = await request.json()
         return await self.predict_batch(input_data)
+
 
 xgboost_model = XGBoostModel.bind()
 
