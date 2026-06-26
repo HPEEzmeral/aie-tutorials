@@ -131,6 +131,17 @@ For multi-node training:
 
 ### Multi-Node GPU Training
 
+Enable GPU:
+
+```yaml
+###############################
+## CONFIG | GLOBAL
+###############################
+global:
+  gpu:
+    enabled: "true"
+```
+
 ```yaml
 worker:
   groupName: workergroup
