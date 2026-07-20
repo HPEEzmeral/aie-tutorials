@@ -29,10 +29,15 @@ In this kernel example will give you precise information, how easly you can leve
 To complete the tutorial follow simple steps below:
 
 1. Login to you EzAF cluster.
-2. Create a new notebook server using the `jupyter-data-science` image.
+2. Create a new notebook server using the `jupyter-tensorflow-cuda-full:aie-2026.07.0-cf4504de` image.
 3. Clone the repository locally.
 4. Launch the python file name `EzSQLDBComponent.py` on top of notebook.
 
+> **Note**
+>
+> Before launching `EzSQLDBComponent.py`:
+> - Download an authentication token from `https://token-service.$DOMAIN/refresh-token-download`.
+> - Use the downloaded authentication token as the value of the `password` field in the connection configuration.
 
 ## Reference:
 1. https://www.statista.com/statistics/871513/worldwide-data-created/
