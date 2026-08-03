@@ -26,7 +26,7 @@ spec:
   restartPolicy:
     type: Never
   imagePullSecrets:
-    - imagepull
+    - hpe-imagepull-secrets
   driver:
     cores: 1
     coreLimit: "1000m"

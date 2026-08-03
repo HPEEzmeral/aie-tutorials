@@ -13,7 +13,7 @@ spec:
   restartPolicy:
     type: Never
   imagePullSecrets:
-    - imagepull
+    - hpe-imagepull-secrets
   driver:
     labels:
       version: 3.5.5
