@@ -20,6 +20,18 @@ The task associated with this dataset is regression, with 17,389 instances. The
 overarching goal is to construct a predictive model capable of forecasting bike
 rental demand.
 
+## MLflow Version and Workspace Support
+
+The notebook examples are updated for `mlflow==3.14.0`.
+
+To run against a specific MLflow workspace/tracking server, set:
+
+* `MLFLOW_TRACKING_URI` (optional): MLflow tracking URI for your workspace
+* `MLFLOW_EXPERIMENT_NAME` (optional): explicit experiment name to use
+
+If `MLFLOW_EXPERIMENT_NAME` is not set, the notebook creates a workspace-scoped
+experiment name automatically using `NOTEBOOK_NAMESPACE`.
+
 ## What You'll Need
 
 To complete the tutorial follow the steps below:
