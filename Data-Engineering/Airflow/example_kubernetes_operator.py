@@ -25,7 +25,7 @@ from airflow.sdk import dag, task
                 description="Input your registry url. Trailing slash in the end is required",
             ),
             "container_image": Param(
-                "docker.io/alpine:3.22",
+                "aie-vnd/alpine:3.23-202603261456",
                 type="string",
                 description="Container image to run inside Kubernetes Pod",
             ),
