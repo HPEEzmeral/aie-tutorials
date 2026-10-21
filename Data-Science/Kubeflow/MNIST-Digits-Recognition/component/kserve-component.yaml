@@ -2,7 +2,6 @@ name: Serve a model with KServe
 description: Serve Models using KServe 
 inputs:
   - {name: Action,                    type: String, default: 'create',     description: 'Action to execute on KServe'}
-  - {name: Namespace,                 type: String, default: '',           description: 'Kubernetes namespace where the KServe service is deployed.'}
   - {name: InferenceService YAML,     type: String, default: '{}',         description: 'Raw InferenceService serialized YAML for deployment'}
 
 outputs:
@@ -14,7 +13,6 @@ implementation:
     args: [
       -u, kservedeployer.py,
       --action,                 {inputValue: Action},
-      --namespace,              {inputValue: Namespace},
       --output-path,            {outputPath: InferenceService Status},
       --inferenceservice-yaml,  {inputValue: InferenceService YAML},
     ]
