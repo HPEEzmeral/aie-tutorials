@@ -6,7 +6,7 @@ spec:
   type: Scala
   sparkVersion: 3.5.5
   mode: cluster
-  image: '{{dag_run.conf["registry_url"]}}hpe-spark/spark:3.5.5-202610070149-f5022ad'
+  image: '{{dag_run.conf["registry_url"]}}hpe-spark/spark:3.5.5-202610230230-88296a7'
   imagePullPolicy: Always
   mainClass: org.apache.spark.examples.SparkPi
   mainApplicationFile: '{{ dag_run.conf.get("mainApplicationFile_path")}}'
